@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+				<meta charset="UTF-8">
+				<title>Page title</title>
+					<link rel="stylesheet" href="fontawesome.min.css">
+     	<script src="fontawesome-free-6.1.1-web/fontawesome-free-6.1.1-web/js/all.min.js"></script>
+				<link rel="stylesheet" href="stylesheet.css">
+				<script src="scripts.js" defer></script>
+</head>
+<body>
+					<!-- loader -->
+				
+				<div id="preloader">
+						
+				</div>
+				
+				<section class="main">
+								
+								<!-- navigation bar -->
+							 <header>
+							 				<label for="logo" class="logo">IVC calvarylife</label>
+							 				<ul class="nav">
+							 								<li class="navlinks"><a href="index.html">home</a></li>
+							 								<li class="navlinks active"><a href="about.html">about</a></li>
+							 								<li class="navlinks"><a href="#">services</a></li>
+							 								<li class="navlinks"><a href="#">Give</a></li>
+							 								<li class="navlinks"><a href="contact.html">contact</a></li>
+							 								<li class="navlinks close"><i id="times" class="fas fa-times fa-3x"></i></li>
+							 				</ul>
+							 				
+							 				<div class="menu"><i id="bars" class="fas fa-bars fa-3x"></i></div>
+							 </header>
+							 
+							 <!-- about hero -->
+								<div class="hero_about">
+												<img src="images/church9.jpeg" alt="">
+												<h2 class="caption">About</h2>
+								</div>
+							
+						  	<!-- about navbar -->
+						  	<div class="about_carousel">
+						<div class="about_navs">
+								
+									<button class="carousel_indicator current_dot">About us</button>
+								 <button class="carousel_indicator ">our staff</button>
+								 <button class="carousel_indicator">our beliefs</button>
+												
+						</div>
+								
+								<!-- content -->
+						<div class="carousel_track_container">
+								<ul class="about_content">
+												<li class="row about currentSlide">
+																<div class="about_img_col">
+																				<img src="images/church5.jpeg" alt="">
+																</div>
+																<div class="about_info_col">
+																				<h1>what to expect</h1>
+																				<p>When you come to calvarylife, you can expect to be welcomed into a friendly, positive environment by people who are genuinely glad to see you. Our gatherings last about an hour, are filled with great music, and include an inspiring message from the bible by one of our pastors.</p>
+																</div>
+												</li>
+												
+												<li class="row staff">
+																<div class="about_img_col">
+																				<img src="images/church2.jpeg" alt="">
+																</div>
+																<div class="about_info_col">
+																				<h1>what to expect</h1>
+																				<p>When you come to calvarylife, you can expect to be welcomed into a friendly, positive environment by people who are genuinely glad to see you. Our gatherings last about an hour, are filled with great music, and include an inspiring message from the bible by one of our pastors.</p>
+																</div>
+												</li>
+												<li class="row beliefs">
+																<div class="about_img_col">
+																				<img src="images/church3.jpeg" alt="">
+																</div>
+																<div class="about_info_col">
+																				<h1>what to expect</h1>
+																				<p>When you come to calvarylife, you can expect to be welcomed into a friendly, positive environment by people who are genuinely glad to see you. Our gatherings last about an hour, are filled with great music, and include an inspiring message from the bible by one of our pastors.</p>
+																</div>
+												</li>
+								</ul>
+					 </div>
+				</div>
+						<a href="#" class="ctop">To top</a>
+								<!-- footer -->
+								
+								<footer>
+								<div class ="content">
+												<h1>IVC calvarylife church </h1>
+												<p> I am not one of them.<br/>Some people are good at taking decisions. I am not one of them. </p>
+								</div>
+								<div class="line">
+												
+								</div>
+								<div id="footer-icons">
+												<ul>
+																<li><a href="#"><i id="fa" class="fab fa-facebook fa-2x"></i></a></li>
+																<li><a href="#"><i id="fa" class="fab fa-twitter fa-2x"></i></a></li>
+																<li><a href="#"><i id="fa" class="fab fa-youtube fa-2x"></i></a></li>
+												</ul>
+								</div>
+								<p id="artist">Made with <i class="fas fa-heart"></i> by  Brian Cheruiyot (C.B)</p>
+								<div class="navbar">
+												<div class="copyright">
+																<p>&copy; Copyright 2021</p>
+												</div>
+												
+												<div id="navbar">
+																<ul>
+																				<li><a href="index.html">Home</a></li>
+																				<li><a href="about.html ">About</a></li>
+																				<li><a href="#">services</a></li>
+																				<li><a href="#">Give</a></li>
+																				<li><a href="contact.html">contacts</a></li>
+																</ul>
+																
+													
+												</div>
+								</div>
+				</footer>
+				</section>
+				<script>
+								const track = document.querySelector(".about_content");
+const slides = Array.from(track.children);
+
+const buttonsNav = document.querySelector('.about_navs');
+		
+const buttons = Array.from(buttonsNav.children);
+
+
+
+
+
+const slideSize = slides[0].getBoundingClientRect();
+
+const slideWidth = slideSize.width;
+
+slides.forEach((slide, index)=>{
+				slide.style.left = slideWidth * index + 'px';
+});
+
+
+const moveToSlide = (track, currentSlide, targetSlide)=>{
+				track.style.transform = 'translateX(-'+ targetSlide.style.left +')';
+currentSlide.classList.remove('currentSlide');
+targetSlide.classList.add('currentSlide');
+}
+
+
+//when i click nav indicators, move to that slide
+
+   buttonsNav.addEventListener('click',(e)=>{
+			const	targetDot = e.target.closest('button');
+			
+			//console.log('test1');
+			if(!targetDot){
+							return;
+			}
+			//console.log('test2');
+			
+			const currentSlide = track.querySelector('.currentSlide');
+			const currentDot = buttonsNav.querySelector('.current_dot');
+			const targetIndex = buttons.findIndex(button => button === targetDot);
+			const targetSlide = slides[targetIndex];
+			
+			//console.log(targetIndex);
+			
+			moveToSlide(track, currentSlide, targetSlide);
+			//console.log(e.target.closest('button'));
+			currentDot.classList.remove('current_dot');
+			targetDot.classList.add('current_dot');
+			
+});
+		
+				</script>
+</body>
+</html>
